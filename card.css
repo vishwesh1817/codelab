@@ -1,0 +1,465 @@
+* {
+    text-decoration: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: 'mo';
+    color: #222222;
+
+}
+
+@font-face {
+    font-family: 'mo';
+    src: url("Montserrat/SalesforceSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'sa';
+    src: url("Montserrat/SalesforceSans-Bold.ttf");
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.slider {
+    width: 340px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider .sld:hover {
+    transform: scale(0.4);
+    cursor: zoom-in;
+}
+
+.slider .sld {
+    width: 220px;
+    height: auto;
+    max-width: 250px;
+    object-fit: contain;
+    transition: opacity 0.4s ease, transform 0.3s ease;
+    cursor: zoom-in;
+    opacity: 1;
+    padding: 10px;
+}
+
+.slider .sld.fade-out {
+    opacity: 0.7;
+}
+
+.slider .sld.zoomed {
+    transform: scale(1.4);
+    transform-origin: center;
+}
+
+.color {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 4px #0002;
+}
+
+.color:focus {
+    border: 2px solid #e5ff00;
+}
+
+.tabs {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+    font-family: sans-serif;
+}
+
+.prev,
+.next {
+    width: 60px;
+    height: 60px;
+    border: none;
+    background-color: transparent;
+    z-index: 5;
+}
+
+.tab-buttons {
+    display: flex;
+    gap: 18px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #777;
+    position: relative;
+    transition: color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-size: 11px;
+}
+
+.tab-btn.active {
+    color: #000;
+    font-weight: 600;
+}
+
+.tab-btn.active::after {
+    content: "";
+    width: 100%;
+    height: 2px;
+    background: #000;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    transition: 0.3s ease;
+}
+
+/* CONTENT ANIMATION */
+.tab-content {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all .35s ease;
+}
+
+.tab-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+
+
+.tab-btn::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #0002;
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(1);
+    pointer-events: none;
+    transition: 0.45s ease;
+}
+
+.tab-btn:active::after {
+    opacity: 0;
+    transform: scale(13);
+}
+
+/* TAB FIX — NO JUMP */
+.tab-wrapper {
+    position: relative;
+    min-height: 80px;
+    /* enough space for all content */
+}
+
+.tab-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: all .35s ease;
+}
+
+.tab-content.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    position: relative;
+}
+
+.tab-content span {
+    font-size: 10px;
+}
+
+.card {
+    border: 1px solid;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    width: 700px;
+    height: auto;
+    gap: 20px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.cencel {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.l {
+    flex: 1;
+    min-width: 260px;
+}
+
+mark {
+    color: #c10015;
+    background-color: transparent;
+}
+
+.ee {
+    margin-top: 5px;
+}
+
+.lim {
+    background-color: #c10015;
+    color: rgb(255, 255, 255);
+    height: 18px;
+    border-radius: 3px;
+    font-size: 10px;
+    width: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.r {
+    flex: 1;
+    min-width: 260px;
+    border-left: 1px solid #dddddd;
+    padding-left: 50px;
+}
+
+.colo-size {
+    display: flex;
+    flex-direction: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.size {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info {
+    display: flex;
+    gap: 4px;
+}
+
+.info button {
+    width: 30px;
+    height: 30px;
+    color: black;
+    background-color: white;
+    border: 1px solid #dddddd;
+    transition: all 0.5s;
+    border-radius: 8px;
+}
+
+.info button:focus {
+    background-color: #6c63ff;
+    color: white;
+
+}
+
+.btn2 {
+    display: flex;
+    gap: 40px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.btn2 button {
+    width: 140px;
+    height: 30px;
+    outline: none;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.f {
+    color: black;
+    background-color: white;
+    border: 1px solid #dddddd;
+}
+
+.c {
+    background-color: #6c63ff;
+    border: none;
+    color: white;
+}
+
+.btn2 button:hover {
+    opacity: 0.8;
+}
+
+
+
+
+
+/* ================================
+   RESPONSIVE FOR TABLETS
+================================ */
+@media (max-width: 900px) {
+
+    .card {
+        width: 95%;
+        padding: 20px;
+        flex-direction: column;
+    }
+
+    .r {
+        border-left: none;
+        padding-left: 0;
+        width: 100%;
+    }
+
+    .l {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .slider {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .slider .sld {
+        width: 80%;
+        max-width: 250px;
+    }
+
+    .tab-buttons {
+        gap: 10px;
+    }
+}
+
+/* ================================
+   RESPONSIVE FOR MOBILE
+================================ */
+@media (max-width: 600px) {
+
+    body {
+        height: 100vh;
+    }
+
+    .card {
+        width: 100%;
+        height: 100vh;
+        padding: 15px;
+    }
+
+    .l {
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .ee {
+        font-size: 20px;
+    }
+
+    .lim {
+        height: 20px;
+        font-size: 12px;
+        width: 120px;
+    }
+
+    /* Slider */
+    .slider {
+        height: 350px;
+    }
+
+    .slider .sld {
+        width: 200px;
+    }
+
+    .prev,
+    .next {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Tab section */
+    .tabs {
+        max-width: 100%;
+        margin-top: 15px;
+    }
+
+    .tab-buttons {
+        gap: 25px;
+    }
+
+    .tab-btn {
+        font-size: 12px;
+    }
+    .tab-content{
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+    }
+    .tab-content span {
+        font-size: 9px;
+    }
+    .tab-buttons{
+        border: none;
+    }
+    .tab-wrapper {
+        background-color: #f8f8f8;
+        position: relative;
+        min-height: 45px;
+        /* enough space for all content */
+    }
+
+    /* Color + Size */
+    .colo-size {
+        margin-top: 20px;
+        gap: 15px;
+    }
+
+    .info button {
+        width: 35px;
+        height: 35px;
+        font-size: 10px;
+    }
+
+    .cencel {
+        display: none;
+    }
+
+    .color {
+        width: 28px;
+        height: 28px;
+    }
+
+    /* Buttons bottom */
+    .btn2 {
+        flex-direction: row;
+        width: 100%;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .btn2 button {
+        width: 100%;
+        height: 35px;
+        font-size: 12px;
+    }
+}

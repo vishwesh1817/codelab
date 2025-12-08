@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="card.css">
+</head>
+
+<body>
+    <div class="card">
+        <span class="cencel"><img src="icone/cancel-01-stroke-rounded.svg" width="20px"></span>
+        <div class="l">
+            <div class="slider">
+                <button class="prev"><img src="icone/arrow-left-01-stroke-rounded.svg" width="30px"></button>
+                <img class="sld" id="slideImage" src="t (3).jpg">
+                <button class="next"><img src="icone/arrow-right-01-stroke-rounded.svg" width="30px"></button>
+            </div>
+        </div>
+        <div class="r">
+            <h2>Mens Casual Shirts</h2>
+            <span class="ee">₹ 350 &nbsp;&nbsp;<mark>- 77%</mark></span>
+            <h6 class="lim ee">Limited time deal</h6>
+            <div class="tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="desc">Rating</button>
+                    <button class="tab-btn" data-tab="specs">Details</button>
+                    <button class="tab-btn" data-tab="delivery">Information</button>
+                    <button class="tab-btn" data-tab="reviews">Reviews</button>
+                </div>
+
+                <div class="tab-wrapper">
+                    <div class="tab-content active" id="desc">
+                        <span>4.0 <img src="star-stroke-rounded (1).svg" width="9px">
+                            <img src="star-stroke-rounded (1).svg" width="9px">
+                            <img src="star-stroke-rounded (1).svg" width="9px">
+                            <img src="star-stroke-rounded (1).svg" width="9px">
+                            <img src="star-stroke-rounded.svg" width="9px">
+                            (4.9k)</span><br>
+                        <span>100+ bought in past month</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="colo-size">
+                <div class="size">
+                    <div class="txt">
+                        <h6>Size</h6>
+                    </div>
+                    <div class="info">
+                        <button>S</button>
+                        <button>M</button>
+                        <button>L</button>
+                        <button>XL</button>
+                    </div>
+                </div>
+                <div class="size">
+                    <div class="txt">
+                        <h6>Color</h6>
+                    </div>
+                    <div class="info">
+                        <div class="color" data-img="t (3).jpg" style="background:#000000"></div>
+                        <div class="color" data-img="t (2).jpg" style="background:#7a0000"></div>
+                        <div class="color" data-img="t (4).jpg" style="background:#003f0a"></div>
+                        <div class="color" data-img="t (1).jpg" style="background:#006ba8"></div>
+                        <div class="color" data-img="t (5).jpg" style="background:#000e91"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn2">
+                <button class="f">Add to wishlist</button>
+                <button class="c">Add to cart</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        const images = ["t (3).jpg", "t (2).jpg", "t (4).jpg","t (1).jpg","t (5).jpg"];
+        let index = 0;
+
+        const slideImage = document.getElementById("slideImage");
+        const colorButtons = document.querySelectorAll(".color");
+
+        let selectedImage = images[0];
+
+        // smooth fade change
+        function changeImage(src) {
+            slideImage.classList.add("fade-out");
+
+            setTimeout(() => {
+                slideImage.src = src;
+                slideImage.classList.remove("fade-out");
+            }, 300);
+        }
+
+        // next
+        document.querySelector(".next").onclick = () => {
+            index = (index + 1) % images.length;
+            selectedImage = images[index];
+            changeImage(selectedImage);
+        };
+
+        // prev
+        document.querySelector(".prev").onclick = () => {
+            index = (index - 1 + images.length) % images.length;
+            selectedImage = images[index];
+            changeImage(selectedImage);
+        };
+
+        // hover temp
+        colorButtons.forEach((btn, i) => {
+            btn.addEventListener("mouseover", () => {
+                changeImage(btn.getAttribute("data-img"));
+            });
+
+            btn.addEventListener("mouseout", () => {
+                changeImage(selectedImage);
+            });
+        });
+
+        // click lock
+        colorButtons.forEach((btn, i) => {
+            btn.addEventListener("click", () => {
+                selectedImage = btn.getAttribute("data-img");
+                changeImage(selectedImage);
+                index = i;
+            });
+        });
+        const zoomImg = document.getElementById("slideImage");
+
+        // Mouse move → zoom point follow kare
+        zoomImg.addEventListener("mousemove", (e) => {
+            const rect = zoomImg.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+            zoomImg.style.transformOrigin = `${x}% ${y}%`; // zoom center follow cursor
+            zoomImg.classList.add("zoomed");
+        });
+
+        // Mouse leave → normal image
+        zoomImg.addEventListener("mouseleave", () => {
+            zoomImg.classList.remove("zoomed");
+        });
+
+
+        const tabBtns = document.querySelectorAll(".tab-btn");
+        const tabContents = document.querySelectorAll(".tab-content");
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+
+                // remove active from all
+                tabBtns.forEach(b => b.classList.remove("active"));
+                tabContents.forEach(c => c.classList.remove("active"));
+
+                // add active to clicked
+                btn.classList.add("active");
+                const content = document.getElementById(btn.dataset.tab);
+
+                // show tab with animation
+                setTimeout(() => {
+                    content.classList.add("active");
+                }, 10);
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>
