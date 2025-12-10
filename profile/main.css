@@ -1,0 +1,49 @@
+body {
+    font-family: Arial;
+    background: #f3f1ff;
+    margin: 0;
+    padding: 40px;
+}
+
+.settings-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.settings-card {
+    width: 480px;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.09);
+}
+
+.tabs {
+    display: flex;
+    gap: 22px;
+}
+
+.tab {
+    background: none;
+    border: none;
+    padding-bottom: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    color: #666;
+    border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+    color: black;
+    border-bottom: 2px solid #4A5BFF;
+    font-weight: bold;
+}
+
+.tab-content {
+    display: none;
+    margin-top: 20px;
+}
+
+.tab-content.active {
+    display: block;
+}
